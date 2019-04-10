@@ -9,3 +9,7 @@ $db_name = 'datenbankname';
 $email_url = 'xxx';
 // Where should emails appear to come from?
 $email_from = 'xxx';
+
+// How long are presentation codes valid for?
+$code_validity = 14; // Days
+
