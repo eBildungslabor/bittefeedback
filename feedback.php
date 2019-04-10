@@ -20,11 +20,12 @@
 	}
 
 	$result = $db->query('SELECT id, title, speaker, link FROM presentations
-		WHERE code = "' . $db->escape_string($code) . '"')
+		WHERE code = "' . $db->escape_string($code) . '"
+		AND `datetime` > ' . (time() - ($code_validity * 3600 * 24)))
 		or die('Database error 5. Please try again in a minute.');
 	
 	if ($result->num_rows == 0) {
-		die('Dieser Code ist nicht bekannt. Hast Du Dich vertippt? <a href="./">Versuche es erneut!</a>');
+		die('Dieser Code ist nicht bekannt oder abgelaufen. Hast Du Dich vertippt? <a href="./">Versuche es erneut!</a>');
 	}
 
 	$row = $result->fetch_row();
